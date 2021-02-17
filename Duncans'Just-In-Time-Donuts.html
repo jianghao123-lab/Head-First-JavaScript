@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Duncans'Just-In-Time-Donuts</title>
+		<link rel="stylesheet" type="text/css" href="Duncans'Just-In-Time-Donuts.css"/>
+		<script type="text/javascript">
+			
+			function updateOrder(){
+				const TAXRATE=0.0925;
+				const UNITPRICE=0.5;
+				var numcake=parseInt(document.getElementById("cake").value);
+				var numglazed=parseInt(document.getElementById("glazed").value);
+				if(isNaN(numcake)){
+					numcake=0;
+				}
+				if(isNaN(numglazed)){
+					numglazed=0;
+				}
+				var subTotal=(numcake+numglazed)*UNITPRICE;
+				var tax=subTotal*TAXRATE;
+				var total=subTotal+tax;
+				// var total= cake+glazed;
+				document.getElementById("subtotal").value="$"+subTotal.toFixed(2);
+				document.getElementById("Tax").value="$"+tax.toFixed(2);
+				document.getElementById('Total').value="$"+total.toFixed(2);
+			}
+			
+			function placeOrder(){
+				if(document.getElementById("name").value==""){
+					alert("I'm sorry but you must provide your name before submitting on order.");
+					return;}
+				else if(document.getElementById("pickupminutes").value=="" || isNaN(document.getElementById("pickupminutes").value)){
+					alert("I'm sorry you must provide the number of minutes until pick-up"+"before submitting on order");
+					return;
+				}
+				// from.submit();
+				alert("Place an order successfully");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="frame">
+			
+			<form action="orderform" name="orderform" method="post">
+				<div >
+					<label>Name:</label><input type = "text" name="name" id="name" value="" />
+				</div >
+				<div >
+					<label>#of CakeDonuts:</label><input type="text" name="cake" id="cake"   onchange="updateOrder();"/>
+				</div>
+				<div>
+					<label>#of GlazedDonuts:</label><input type="text" name="glazed" id="glazed"  onchange="updateOrder();"/>
+				</div>
+				<div>
+					<label>Minutes' tll pickup:</label><input type="text" name="pickupminutes" value="" id="pickupminutes"/>
+				</div>
+				<div>
+					<label>subtotal:</label><input type="text" name="" id="subtotal" value="" />
+				</div>
+				<div>
+					<label>Tax:</label><input type="text" name="" id="Tax" value="" />
+				</div>
+				<div>
+					<label>Total:</label><input type="text" name="" id="Total" value="" />
+				</div>
+				<div id="button">
+					<input type="button" value="Place Order" onclick="placeOrder();" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
