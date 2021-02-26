@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./Rock.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var userName;
+			// alert('Hello I am you are pet rock!');
+			function greetUser(){
+				if(navigator.cookieEnabled)
+				userName=readCookie("irock_username");
+				if(userName){
+					alert("Hello"+userName+", I missed you.");
+				}else{
+					alert("Hello,I am you pet rock");
+				}
+			}
+			function resizeRock(){
+				document.getElementById("rockImg").style.height=(document.body.clientWidth-100)*0.9;
+			}
+			/* function touchRock(){
+				var userName=prompt('what is your name?','Enter you name here');
+				if(userName){
+					alert('It is good to meet you'+" "+userName+".");
+					document.getElementById("rockImg").src="../../黑马/图片和音频/t3.jpg";
+					setTimeout("document.getElementById('rockImg').src='../../黑马/图片和音频/t2.jpg';",5000);
+					setTimeout("location.reload()",7000);// Refresh the page
+				}
+			} */
+			function touchRock(){
+				if(userName) {
+					alert("I like the attention, "+ userName + ".Thank you");
+				}
+				else{
+					userName =prompt('what is your name?','Enter you name here');
+					if(userName){
+						alert('It is good to meet you'+" "+userName+".");
+						if(navigator.cookieEnabled){
+						writeCookie('irock_username', userName,5*365);}
+						else{
+							alert("Sorry,Cookies aren't supported/enabled in your browser.I won't remember you later")
+						}
+					}
+				}
+				document.getElementById("rockImg").src="../../黑马/图片和音频/t3.jpg";
+				setTimeout("document.getElementById('rockImg').src='../../黑马/图片和音频/t2.jpg';",5000);
+				setTimeout("location.reload()",7000);// Refresh the page
+			}
+		</script>
+	</head>
+	<body onload="resizeRock(); greetUser(); readCookie()" >
+		<div style="margin-top:100px; text-align: center;">
+			<img src="../../黑马/图片和音频/oldman.jpg" alt="" id="rockImg" style="cursor: pointer;" onclick="touchRock()">
+		</div>
+	</body>
+</html>

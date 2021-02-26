@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var seats=[[false,true,false,true,true,true,true,false,false],
+						[false,true,false,true,true,true,true,false,false]];
+			var selseat=-1;
+			function initSeats(){
+
+				for(var i=0;i<seats.length;i++){
+					for(var j=0;j<seats[i].length;j++){
+						
+					if(seats[i][j]){
+						document.getElementById("seat"+(i*seats[i].length+j)).src="./img/seat_avail.jpg"
+					}else{
+					 	document.getElementById("seat"+(i*seats[i].length+j)).src="./img/seat_unavail.jpg"
+					 }
+				}
+			}
+			}
+			
+			
+			function findSeat(){
+				
+				if(selseat >= 0){
+					selseat = -1;
+					initSeats();
+					}
+					// Search through all the seats for availability
+				var i=0;
+				var finished=false;
+				while(i<seats.length && !finished){
+						for(var j=0;j<seats[i].length;j++){
+							// console.log(i+'  '+j);
+							if(seats[i][j] && seats[i][j+1] && seats[i][j+2]){
+								
+								selseat=i*seats[i].length+j;
+								document.getElementById("seat"+(i*seats[i].length+j)).src="./img/seat_select.jpg";
+								document.getElementById("seat"+(i*seats[i].length+j+1)).src="./img/seat_select.jpg";
+								document.getElementById("seat"+(i*seats[i].length+j+2)).src="./img/seat_select.jpg";
+								var accept = confirm("seat"+(j+1)+"through"+(j+3)+"in Row"+(i+1)+"are available.Accept?");
+							if(accept){
+								finished = true;
+								break;
+							}else{
+								selseat =-1;
+								document.getElementById("seat"+(i*seats[i].length+j)).src="./img/seat_avail.jpg";
+								document.getElementById("seat"+(i*seats[i].length+j+1)).src="./img/seat_avail.jpg";
+								document.getElementById("seat"+(i*seats[i].length+j+2)).src="./img/seat_avail.jpg";
+							}
+						}
+						
+					}
+					i++;
+					}
+					}
+		</script>
+	</head>
+	<body onload="initSeats()">
+		<div style="margin-top: 10px; text-align: center;">
+			<img id="seat0"  onclick="" src="" style="width:160px"><!-- "img/seats_unavail.jpg"> -->
+			<img id="seat1"  onclick="" src="" style="width:160px"><!-- "img/seats_unavail.jpg"> -->
+			<img id="seat2"  onclick="" src="" style="width:160px"><!-- "img/seat_avail.jpg"> -->
+			<img id="seat3"  onclick="" src="" style="width:160px"><!-- "img/seats_unavail.jpg"> -->
+			<img id="seat4"  onclick="" src="" style="width:160px"><!-- "img/seat_avail.jpg"> -->
+			<img id="seat5"  onclick="" src="" style="width:160px"><!-- "img/seat_avail.jpg"> -->
+			<img id="seat6"  onclick="" src="" style="width:160px"><!-- "img/seat_avail.jpg"> -->
+			<img id="seat7"  onclick="" src="" style="width:160px"><!-- "img/seats_unavail.jpg"> -->
+			<img id="seat8"  onclick="" src="" style="width:160px">
+			<img id="seat9"  onclick="" src="" style="width:160px">
+			<img id="seat10"  onclick="" src="" style="width:160px">
+			<img id="seat11"  onclick="" src="" style="width:160px">
+			<img id="seat12"  onclick="" src="" style="width:160px">
+			<img id="seat13"  onclick="" src="" style="width:160px">
+			<img id="seat14"  onclick="" src="" style="width:160px">
+			<img id="seat15"  onclick="" src="" style="width:160px">
+			<img id="seat16"  onclick="" src="" style="width:160px">
+			<img id="seat17"  onclick="" src="" style="width:160px">
+			<img id="seat18"  onclick="" src="" style="width:160px">
+			<input type="button" name="" id="finseats" value="finseat" onclick="findSeat()"/>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function validateNumber(value){
+				if(!isNumber(value))
+				alert("please enter a number.");
+			}
+			//告知读者邮政编码应为5个数字，格式如XXXXX
+			function validateZIPCode(value){
+				if(!isZIPCode(value))
+				alert("please enter a ZIP code in the form XXXXX .");
+			}
+			// 用户薪水的4倍即为最高房价
+			function calcPrcice(){
+				var maxprice=document.getElementById("income").value*4;
+				alert("you can afford a house that costs up to $"+maxprice+".");
+			}
+			
+			function findHouse(form){
+				var bedrooms=document.getElementById("bedrooms").value;
+				var zipcode=document.getElementById("zip").value;
+				form.submit();
+			}
+		</script>
+		
+		<style type="text/css">
+			body{
+				font: 4px arial;
+				text-align: center;
+			}
+			#frame{
+				width: 400px;
+			}
+			#header{
+				font: 16px arial;
+				font-weight: bold;
+				margin-bottom: 15px;
+			}
+			#left{
+				float: left;
+				width: 110px;
+				height: 100px;
+				background-color: yellow;
+			}
+			div.field{
+				margin-bottom: 10px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="frame">
+			<div id="header">Ready to find a new house?</div>
+			<div id="left">
+				房子
+			</div>
+			<form action="..." method="post" name="orderform">
+				<div class="field">Enter your annual income:
+				<input type="text" size="12" id="income" onblur="validateNumber(this.value)"/>
+				</div>
+				<div class="field">Enter the number of bedrooms:
+				<input type="text" size="6" id="bedrooms" onblur="validateNumber(this.value)"/>
+				</div>
+				<div class="field">Enter your ZIP code:
+				<input type="text" size="10" id="zip" onblur="validateZIPCode(this.value)"/>
+				</div>
+				<input type="button"  value="calculate price"  onclick="calcPrcice()"/>
+				<input type="button" value="shop for Houses" onclick="findHouse(this.form);">
+			</form>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var message="";
+			var curScene=1;
+			function anniu(option){
+			if(curScene ==1){
+				if(option == 1 || 2){
+				curScene = 2;
+				message="Your journey begin at a fork in the road";	
+			}
+			}
+			else  if(curScene == 2){
+				if(option == 1){
+					curScene = 3;
+					message = "You have arrived at a cute little...";
+				}
+				else {
+					curScene = 4;
+					message ="You are standing on the bridge...";
+				}
+			}
+			else if(curScene == 3){
+				if(option == 1){
+					curScene=5;
+					message="You are going down";
+				}else{
+					curScene =6;
+					message="game over";
+				}
+			}
+			else if(curScene == 4){
+				if(option ==1){
+					curScene =3;
+				}else{
+					curScene=2;
+				}
+			}
+			else if(curScene == 5){
+				if(option == 1){
+					curScene =2;
+				}else{
+					curScene =1;
+				}
+			}
+			document.getElementById("scenemimg").src="./img/"+curScene+".jpg";
+			document.getElementById("sceneText").innerHTML=message;
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div>
+			<img src="./img/1.jpg" id="scenemimg"><br>
+			please choose:<br>
+			 <input type="button" name="" id="decision1" value="1" onclick="anniu(1)" />
+			 <input type="button" name="" id="decision2" value="2" onclick="anniu(2)"/>
+			 <div id="sceneText"></div>
+		</div>
+	</body>
+</html>

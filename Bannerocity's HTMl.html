@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* function showIt(theForm){
+				alert(theForm["zipcode"].value);
+			} */
+			function validateNonEmpty(inputfield, helpText){
+				if(inputfield.value.length==0){
+					// alert("Please enter a value");
+					if(helpText != null)
+					helpText.innerHTML="Please enter a value.";
+					return false;
+				}
+				else{
+					if(helpText != null)
+					helpText.innerHTML="";
+					return true;
+				}	
+			}
+			function validateLength(minLength, maxLength, inputfield, helpText){
+				// See if the input value cantains at least minLength but no more than maxLength charecters
+				if(inputfield.value.length<minLength || inputfield.value.length>maxLength){
+					if(helpText != null){
+						helpText.innerHTML="Please enter a value "+minLength+" to "+maxLength+"   characters in length";
+						return false;
+					}
+					}
+					
+					else{
+						if(helpText != null)
+							helpText.innerHTML="";
+							return true;
+		
+					}
+					}
+				
+			
+			function validateZIPCode(inputfield, helpText){
+				var regex = /^\d{5}$/;
+				if(!regex.test(inputfield.value)){
+			/* 	if(inputfield.value.length!=5) */
+					if(helpText != null){
+						helpText.innerHTML="please enter exactly five digits.";
+						return false;
+					}
+					}
+					
+					else if(isNaN(inputfield.value)){
+						if(helpText !=null){
+							helpText.innerHTML="Please enter a number.";
+							return false;
+						}
+					
+					}
+					else{
+						if(helpText != null)
+						helpText.innerHTML="";
+						return true;
+					}
+				}
+			function validateRegEx(regex, inputStr, helpText, helpMessage){
+				if(!regex.test(inputStr)){
+					if(helpText != null){
+						helpText.innerHTML=helpMessage;
+						return false;
+					}
+				}
+				else{
+					if(helpText !=null)
+					helpText.innerHTML="";
+					return true;
+				}
+			}
+			
+			function validatemessage(inputfield,helpText){
+				if(!validateNonEmpty(inputfield,helpText))
+				return false;
+				return validateRegEx(/^\d{2}\/\d{2}\/(\d{2}|\d{4})$/,inputfield.value,helpText,
+				"please enter a date (for example,01/14/1975).");
+			}
+			
+			function validatephone(inputfield,helpText){
+				if(!validateNonEmpty(inputfield,helpText))
+				return false;
+				return validateRegEx(/^\d{3}-\d{3}-\d{5}$/,inputfield.value,helpText,"please enter a phone number(for example,123-456-78901).");
+			}
+			
+			function validateEmail(inputfield,helpText){
+				if(!validateNonEmpty(inputfield,helpText))
+				return false;
+				return validateRegEx(/^[\w\._\+]+@[\w-]+(\.\w{2,4})+$/,inputfield.value,helpText,
+				"please enter an email address(for example,johndoe@acme.com).");
+			}
+			
+			function placeOrder(form){
+				if(validateLength(1, 32, form["banner"], form["banner_help"])&&
+				validateZIPCode(form["ZIP"], form["ZIP_help"]) && 
+				validateNonEmpty(form["message"], form["message_help"])&&
+				validateNonEmpty(form["name"], form["name_help"])&&
+				validateNonEmpty(form["phone"], form["phone_help"])&&
+				validateNonEmpty(form["email"], form["email_help"])
+				) {
+					form.submit();
+				} else{
+					alert("I'm sorry but there is something wrong with the order information.");
+				}
+			 } 
+		</script>
+	</head>
+	<body>
+		<form action="" method="post">
+			Enter the banner message:<input type="text" name="" id="banner" value="" style="width: 300px;" onblur="validateLength(1,32,this,document.getElementById('banner_help'))"/>
+			<span id="banner_help" class="help"></span>
+			
+			<br>Enter ZIP code of the location:<input type="text" name="" id="ZIP" value="" onblur="validateZIPCode(this,document.getElementById('ZIP_help'))"/>
+			<span id="ZIP_help"></span>
+			
+			<br>Enter the date of for the message to be shown:<input type="text" name="" id="message" value="" onblur="validatemessage(this,document.getElementById('message_help'))"/>
+			<span id="message_help" class="help"></span>
+			
+			<br>Enter your name:<input type="text" name="" id="name" value="" onblur="validateNonEmpty(this,document.getElementById('name_help'))"/>
+			<span id="name_help" class="help"></span>
+			
+			<br>Enter your phone number:<input type="text" name="" id="phone" value="" onblur="validatephone(this,document.getElementById('phone_help'));"/>
+			<span id="phone_help" class="help"></span>
+			
+			<br>Enter your email address:<input type="text" name="" id="email" value="" onblur="validateEmail
+			\
+			(this,document.getElementById('email_help'));"/>
+			<span id="email_help"></span>
+			
+			<br><input type="button" value="Order Banner" onclick="placeOrder(this.form);"/>
+		</form>
+		
+		
+		
+	</body>
+</html>
