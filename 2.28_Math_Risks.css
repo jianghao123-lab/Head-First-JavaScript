@@ -1,0 +1,14 @@
+span{
+	font-weight: bold;
+	border: thick solid #000000;
+	margin: 10px 10px 10px 10px;
+	background-color: #DDDDDD;
+}
+
+span.decision{
+	font-weight: bold;
+	color: #FFFFFF;
+	border: thick solid #DDDDDD;
+	padding: 5px;
+	background-color: #000000;
+}

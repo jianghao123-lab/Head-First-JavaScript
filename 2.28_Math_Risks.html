@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="CSS/2.28_Math_Risks.css"/>
+		<script type="text/javascript">
+		var curScene=0;
+		function changeScene(decision){
+			console.log(curScene+' '+decision);
+			var message="";
+			switch(curScene){
+				case 0:
+					curScene = 1;
+					message="Your journey begins at a fork in the road.";
+					break;
+				case 1:
+					if(decision == 1){
+						curScene = 2;
+						message ="You are standing on the bridge...";
+						// document.getElementById("decision2").style.visibility="hidden";
+					}else{
+						curScene = 3;
+						message = "You have arrived at a cute little...";
+						decision1 = "Walk across Bridge";
+						decision2 = "Gaze into stream";
+						repalaceNodeText("sceneText",message);
+						repalaceNodeText("decision1",decision1);
+						repalaceNodeText("decision2",decision2);
+					}
+					break;
+				case 2:
+					// console.log(decision);
+					if(decision == 1){
+						curScene = 5;
+						message="You are going down";
+					}else{
+						curScene =6;
+						message="game over";
+					}
+					break;
+				case 3:
+					if(decision == 1){
+						curScene = 4;
+						message="2";
+					}else{
+						curScene = 2;
+						message ="5";
+					}
+				}
+					document.getElementById("scenemimg").src="./img/"+curScene+".jpg";
+					document.getElementById("sceneText").innerHTML=message;
+					
+				/* 	var histoy=document.getElementById("histoy");
+					if(curScene !=0){
+						var decisionElem=document.createElement("p");
+						decisionElem.appendChild(document.createTextNode("decision"+decision+"->Scene"+curScene+":"+message));
+						history.appendChild(decisionElem);
+					} */
+				}
+				
+				function repalaceNodeText(id,newText){
+					var node = document.getElementById(id);
+					while(node.firstChild)
+						node.removeChild(node.firstChild);
+						node.appendChild(document.createTextNode(newText));
+				}
+				var decisionElem = document.createElement('p');
+				// document.getElementById("decision1").className="decisioninverse";
+			</script>
+	</head>
+	<body>
+		<img src="./img/1.jpg" id="scenemimg"><br>
+		please choose:<br>
+		 <!-- <input type="button" name="" id="decision1" value="1" onclick="changeScene(1)" /> -->
+		 <span id="decision1" class="decision" onclick="changeScene(1)" onmouseover="this.className = 'decisionhove'" onmouseout="this.className = 'decision'">Button1</span>
+		 <!-- <input type="button" name="" id="decision2" value="2" onclick="changeScene(2)"/> -->
+		 <span id="decision2" class="decision" onclick="changeScene(2)" onmouseover="this.className = 'decisionhove'" onmouseout="this.className = 'decision'">Button2</span>	
+		 <div id="sceneText">
+		 	 you go <strong>to</strong>back
+		 </div>
+		 
+	</body>
+</html>
